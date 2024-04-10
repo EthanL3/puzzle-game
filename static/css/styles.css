@@ -1,0 +1,159 @@
+.inclusive-sans-regular {
+  font-family: "Inclusive Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.inclusive-sans-regular-italic {
+  font-family: "Inclusive Sans", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.yarndings-12-regular {
+  font-family: "Yarndings 12", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  background-color: black;
+  font-family: "Inclusive Sans", sans-serif;
+  color: white;
+  margin: 10%;
+}
+
+body {
+  background: linear-gradient(222deg, #000000, #423554);
+  background-size: 400% 400%;
+
+  -webkit-animation: AnimationName 52s ease infinite;
+  -moz-animation: AnimationName 52s ease infinite;
+  animation: AnimationName 52s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 99%;
+  }
+  50% {
+    background-position: 100% 2%;
+  }
+  100% {
+    background-position: 0% 99%;
+  }
+}
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 99%;
+  }
+  50% {
+    background-position: 100% 2%;
+  }
+  100% {
+    background-position: 0% 99%;
+  }
+}
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 99%;
+  }
+  50% {
+    background-position: 100% 2%;
+  }
+  100% {
+    background-position: 0% 99%;
+  }
+}
+
+.container {
+  display: flex;
+  width: 100%;
+}
+
+.intro,
+.decor {
+  width: 50%; /* Adjusted width to 50% */
+  padding: 0; /* Removed padding */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.intro {
+  flex: 1; /* Equal flex grow for both columns */
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.decor {
+  flex: 1; /* Equal flex grow for both columns */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#puzzle {
+  width: 20px;
+}
+
+h1 {
+  font-size: 3rem;
+  transition: font-size 0.5s ease-in;
+}
+
+h2 {
+  font-size: 1rem;
+  color: #d2a4ff;
+}
+.centered {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 10%;
+}
+
+.input_size {
+  padding: 10px;
+  border-radius: 100px;
+}
+
+.button {
+  margin: 20px;
+  border-radius: 100px;
+  font-family: "Inclusive Sans", sans-serif;
+  font-size: 1rem;
+  gap: 8px;
+  border-radius: 100px;
+  background: #d2a4ff;
+  color: #371a54;
+  border: none; /* Remove default border */
+  outline: none; /* Remove default outline */
+  margin: 0 auto; /* Center the button horizontally */
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  transition: background-color 0.2s ease-in, padding 0.5s ease-in;
+}
+
+.button:hover {
+  background-color: #f1e3ff;
+  padding: 12px;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+#puzzle-container {
+  display: grid;
+  grid-template-columns: repeat(
+    4,
+    1fr
+  ); /* Adjust the number 4 to match the number of columns in your puzzle */
+  gap: 0; /* Adjust the gap between pieces if needed */
+}
+
+.puzzle-piece {
+  width: 100%;
+  height: auto;
+}

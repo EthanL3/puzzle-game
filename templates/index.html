@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drag(event) {
+        event.dataTransfer.setData("text", event.target.id);
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        var draggedElement = document.getElementById(data);
+        var dropTarget = event.target;
+
+        // If the drop target is not an image, find the closest ancestor image
+        if (dropTarget.tagName !== "IMG") {
+          dropTarget = dropTarget.closest("img");
+        }
+
+        // Check if both the dragged element and drop target are images
+        if (draggedElement.tagName === "IMG" && dropTarget.tagName === "IMG") {
+          // Swap the src attributes of the dragged element and the drop target
+          var tempSrc = draggedElement.src;
+          draggedElement.src = dropTarget.src;
+          dropTarget.src = tempSrc;
+        }
+      }
+      function checkIfSolved() {
+        var pieces = document.querySelectorAll(".puzzle-piece");
+        for (var i = 0; i < pieces.length; i++) {
+          var correctPosition = pieces[i].getAttribute("data-correct-position");
+          var currentPosition = Array.from(pieces).indexOf(pieces[i]);
+          if (correctPosition != currentPosition) {
+            return false; // The puzzle is not solved
+          }
+        }
+        return true; // The puzzle is solved
+      }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inclusive+Sans:ital@0;1&family=Yarndings+12&display=swap" rel="stylesheet">
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css')}}"
+    />
+    <title> PuzzeGenerator</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="intro">
+        <h1>Ryan's Puzzle</h1>
+        Ryan's Puzzle, particularly tailored for today's youth.
+        In a digital landscape overwhelmed by negative news and distractions,
+        Puzzle Generator offers a refreshing escape into a world of mental
+        tranquility and cognitive engagement.
+        <br />
+        <br />
+        First, you choose and upload a desired image. Next, the image is
+        generated into your own personalized puzzle.
+    </div>
+    <div class="decor"></div>
+  </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="centered">
+        <!-- input text box form for ai image -->
+        <form action="/ai_image" method="post" enctype="multipart/form-data">
+          <input  class="input_size" type="text" name="text" />
+          <input   class="button" type="submit" value="Generate" />
+        </div>
+          
+     
+    <h2>Original Image </h2>
+    <img
+      src="{{original_image}}"
+      alt="Original Image"
+    />
+    <h2>Shuffled Image </h2>
+    <div
+      id="puzzle-container"
+      ondragover="allowDrop(event)"
+      ondrop="drop(event)"
+    >
+
+        <!-- src="{{ url_for('static', filename=piece_path) }}" -->
+
+
+      {% for piece_path in piece_paths %}
+      <img
+       src="{{ piece_path }}"
+        alt="Puzzle Piece"
+        draggable="true"
+        ondragstart="drag(event)"
+        id="{{ piece_path}}"
+      />
+      {% endfor %}
+    </div>
+  </body>
+</html>
